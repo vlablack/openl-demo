@@ -1,8 +1,8 @@
 # https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java CI
+name: Build CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -16,6 +16,14 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: maven-x${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-
 
       - name: Maven version
         run: mvn -version
