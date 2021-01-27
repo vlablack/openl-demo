@@ -1,0 +1,13 @@
+<project>
+    <name>Project A</name>
+    <modules>
+        <module>
+            <rules-root path="*.xlsx"/>
+            <method-filter>
+                <includes>
+                    <value>.+ SayHello\(.+\)</value>
+                </includes>
+            </method-filter>
+        </module>
+    </modules>
+</project>

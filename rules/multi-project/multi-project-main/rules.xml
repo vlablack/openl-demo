@@ -1,0 +1,20 @@
+<project>
+    <name>Project Main</name>
+    <modules>
+        <module>
+            <rules-root path="*.xlsx"/>
+            <method-filter>
+                <includes>
+                    <value>.+ Greetings\(.+\)</value>
+                </includes>
+            </method-filter>
+        </module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <name>Project A</name>
+            <autoIncluded>true</autoIncluded>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,9 @@
+version: '2.2'
+
+services:
+
+  rule-services-file-repository:
+    build: ./../../application/rule-services-file-repository
+    container_name: rule-services-file-repository
+    ports:
+      - "8081:8080"

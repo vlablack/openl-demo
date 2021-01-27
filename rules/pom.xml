@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example.openl</groupId>
+        <artifactId>openl-demo</artifactId>
+        <version>0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.example.openl.rules</groupId>
+    <artifactId>rules</artifactId>
+    <packaging>pom</packaging>
+
+    <name>OpenL Rules Parent</name>
+    <description>OpenL Rules Parent</description>
+
+    <modules>
+        <module>single-project</module>
+        <module>multi-project</module>
+    </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.openl.rules</groupId>
+                    <artifactId>openl-maven-plugin</artifactId>
+                    <version>${org.openl.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <!-- JAR mustn't be included to the OpenL Archive -->
+                        <dependenciesThreshold>0</dependenciesThreshold>
+                        <!-- Enables Flat Structure for OpenL Maven Modules, so OpenL Tablets-related resources must be stored in ${project.basedir} directory -->
+                        <sourceDirectory>./</sourceDirectory>
+                        <manifestEntries>
+                            <Build-Branch>${buildBranch}</Build-Branch>
+                        </manifestEntries>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

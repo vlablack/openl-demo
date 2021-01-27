@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example.openl.rules</groupId>
+        <artifactId>multi-project</artifactId>
+        <version>0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>multi-project-main</artifactId>
+    <packaging>openl</packaging>
+
+    <name>OpenL Project - Child - Main</name>
+    <description>An example of OpenL Project which is depended on another OpenL Project</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openl.rules</groupId>
+                <artifactId>openl-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <deploymentPackage>true</deploymentPackage>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.example.openl.rules</groupId>
+            <artifactId>multi-project-a</artifactId>
+            <version>${project.version}</version>
+            <optional>true</optional>
+            <type>zip</type>
+        </dependency>
+    </dependencies>
+
+</project>

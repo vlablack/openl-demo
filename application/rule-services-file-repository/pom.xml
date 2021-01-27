@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example.openl.application</groupId>
+        <artifactId>application-parent</artifactId>
+        <version>0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>rule-services-file-repository</artifactId>
+
+    <properties>
+        <openl.deployment.repository>${project.build.directory}/openl-repository</openl.deployment.repository>
+    </properties>
+
+    <name>OpenL Application - Rule Services - File Repository</name>
+    <description>OpenL Rule Services Application with File Deployment Repository</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>create-openl-repository</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <!-- Expose OpenL Project Artifacts into Deployment Repository -->
+                                <artifactItem>
+                                    <groupId>com.example.openl.rules</groupId>
+                                    <artifactId>single-project</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <outputDirectory>${openl.deployment.repository}/single-project/single-project</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.example.openl.rules</groupId>
+                                    <artifactId>multi-project-main</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                    <classifier>deployment</classifier>
+                                    <outputDirectory>${openl.deployment.repository}/multi-project-deployment</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- Dependencies to OpenL Projects -->
+        <dependency>
+            <groupId>com.example.openl.rules</groupId>
+            <artifactId>single-project</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.example.openl.rules</groupId>
+            <artifactId>multi-project-main</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+            <classifier>deployment</classifier>
+        </dependency>
+    </dependencies>
+
+</project>
