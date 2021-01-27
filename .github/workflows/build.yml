@@ -1,3 +1,5 @@
+# https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
 name: Java CI
 
 on: [push]
@@ -20,3 +22,4 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package
+
